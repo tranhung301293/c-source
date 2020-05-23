@@ -1,0 +1,171 @@
+template <class T> void foo(T& i) { std::cout << "generic template"; }
+template <> void foo(const int& i) { std::cout << "integer specialization"; }
+int main()
+{
+    int i(42);
+    foo(i);
+}
+========
+void foo(double) { std::cout << "d"; }
+void foo(float) { std::cout << "f"; }
+int main()
+{
+    foo(4.2);
+    foo(.3);
+    foo(4.2f);
+}
+int main()
+{
+    int i=1;
+    do {
+        std::cout << i;
+        i++;
+        if(i < 3) continue;
+    } while(false);
+    return 0;
+}
+=======
+void print(char const *str) { std::cout << str; }
+void print(short num) { std::cout << num; }
+int main()
+{
+  print('A');
+}
+struct A
+{
+  A() { std::cout << "1"; }
+  A(const A&) { std::cout << "2"; }
+  ~A() { std::cout << "3"; }
+};
+A f()
+{
+  return A();
+}
+int main()
+{
+  f();
+}
+==============
+int f(int &a, int &b) {
+  a = 3;
+  b = 4;
+  return a + b;
+}
+=========
+ 
+int main()
+{
+  int a = 1;
+  int b = 2;
+  int c = f(a, a);
+  std::cout << a << b << c;
+}
+========
+int main()
+{
+  static int a;
+  std::cout << a;
+}
+======
+class A {
+public:
+  A() { std::cout << 'A'; }
+  ~A() { std::cout << 'a'; }
+};
+ 
+class B : public A {
+public:
+  B() { std::cout << 'B'; }
+  ~B() { std::cout << 'b'; }
+};
+ 
+int main()
+{
+    B b;
+}
+=====
+class A {
+public:
+  void f() { std::cout << "A"; }
+};
+ 
+class B : public A {
+public:
+  void f() { std::cout << "B"; }
+};
+ 
+void g(A &a) { a.f(); }
+ 
+int main()
+{
+  B b;
+  g(b);
+}
+====
+int i;
+void f(int x)
+{
+    std::cout << x << i;
+}
+int main()
+{
+    i = 3;
+    f(i++);
+}
+====
+int main()
+{
+    int I = 0;
+    int J = 1;
+    std::cout << (++I || ++J);
+    std::cout << I << J;
+}
+=====
+class show_id
+{
+public:
+    ~show_id() { std::cout << id; }
+    int id;
+};
+ 
+int main()
+{
+    delete[] new show_id[3]{ {0}, {1}, {2} };
+}
+====
+int x = 0;
+ 
+class A {
+public:
+  A() {std::cout << 'a';}
+  ~A() {}
+};
+ 
+class B {
+public:
+  B() {std::cout << 'b';}
+  ~B() {}
+  A a;
+};
+ 
+int main()
+{
+    B b;
+}
+=====
+void f(int x)
+{
+    std::cout << x;
+}
+int main()
+{
+    void (*fp)(int) = &f;
+    (
+    **************************************************************************
+    **************************************************************************
+    *********/* calling function via pointer ;) */****************************
+    **************************************************************************
+    **************************************************************************
+    fp)(0);
+}
+=======
